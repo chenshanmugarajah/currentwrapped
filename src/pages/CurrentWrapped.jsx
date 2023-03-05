@@ -24,7 +24,7 @@ const CurrentWrapped = () => {
         .catch((error) => console.log(error));
     };
     getAccessToken();
-  }, []);
+  }, [code, state]);
 
   useEffect(() => {
     const getData = async () => {
