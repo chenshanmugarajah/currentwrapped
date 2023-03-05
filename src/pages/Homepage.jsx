@@ -1,29 +1,44 @@
-import querystring from "querystring";
+import React, { useEffect } from "react";
+import SpotifyWebApi from "spotify-web-api-js";
+import "./Homepage.scss";
 
-const Homepage = () => {
-  const client_id = "757c22352a1648c69c3ddd9212edb141";
-  const scope =
-    "user-top-read user-library-read user-read-email user-read-private user-read-recently-played user-read-playback-position user-follow-read playlist-read-collaborative playlist-read-private user-read-currently-playing user-read-playback-state";
-  const redirect_uri = "http://localhost:3000/currentwrapped";
-  const state = "chen";
+const spotifyApi = new SpotifyWebApi();
+const client_id = "757c22352a1648c69c3ddd9212edb141";
+const redirect_uri = "http://localhost:3000/currentwrapped";
+const scope = "user-top-read user-read-recently-played";
+const url = `https://accounts.spotify.com/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=token&scope=${scope}`
 
-  const query = querystring.stringify({
-    response_type: "code",
-    client_id: client_id,
-    scope: scope,
-    redirect_uri: redirect_uri,
-    state: state,
-  });
+function HomePage(props) {
+  useEffect(() => {
+    const params = getHashParams();
+    const token = params.access_token;
+    if (token) {
+      spotifyApi.setAccessToken(token);
+      props.history.push("/currentwrapped");
+    }
+  }, [props.history]);
 
-  const url = "https://accounts.spotify.com/authorize?" + query;
+  function getHashParams() {
+    const hashParams = {};
+    let e,
+      r = /([^&;=]+)=?([^&;]*)/g,
+      q = window.location.hash.substring(1);
+    // eslint-disable-next-line
+    while ((e = r.exec(q))) {
+      hashParams[e[1]] = decodeURIComponent(e[2]);
+    }
+    return hashParams;
+  }
 
   return (
-    <>
-      <h1>Welcome to Current Wrapped</h1>
-      <p>See your current Spotify stats in one place</p>
-      <a href={url}>Log in with Spotify</a>
-    </>
+    <div className="Homepage">
+      <h1>Welcome to CurrentWrapped</h1>
+      <p>To use this app, you must log in with Spotify</p>
+      <a href={url}>
+        Log in
+      </a>
+    </div>
   );
-};
+}
 
-export default Homepage;
+export default HomePage;

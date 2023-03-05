@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CurrentWrapped from './pages/CurrentWrapped';
 import Homepage from './pages/Homepage';
+import "./index.scss";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
