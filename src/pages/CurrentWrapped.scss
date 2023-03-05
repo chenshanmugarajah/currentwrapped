@@ -1,16 +1,14 @@
 $primary-color: #1db954;
 
 .ParentWrapped {
-padding: 30px;
-color: white;
+  padding: 30px;
+  color: white;
 
   .CurrentWrapped {
-    max-width: 600px;
-    margin: 0 auto;
     text-align: center;
 
     h1 {
-      font-size: 3rem;
+      font-size: 2rem;
       margin-bottom: 2rem;
       color: $primary-color;
       text-transform: uppercase;
@@ -38,7 +36,7 @@ color: white;
         }
 
         p {
-          font-size: 1.5rem;
+          font-size: 1.2rem;
           font-weight: bold;
           margin: 0;
           text-align: center;
@@ -49,7 +47,7 @@ color: white;
     }
 
     .listening-time {
-      font-size: 2rem;
+      font-size: 1.5rem;
       margin-top: 3rem;
       color: #fff;
       text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
@@ -69,6 +67,62 @@ color: white;
       &:hover {
         background-color: darken($primary-color, 10%);
       }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .CurrentWrapped {
+      max-width: 600px;
+      margin: 0 auto;
+
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+      }
+
+      ul {
+        justify-content: space-between;
+        gap: 3rem;
+
+        li {
+          flex: 0 0 calc(50% - 1rem);
+
+          img {
+            margin-bottom: 0.5rem;
+          }
+
+          p {
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      .listening-time {
+        font-size: 2rem;
+        margin-top: 4rem;
+      }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .CurrentWrapped {
+      ul {
+        justify-content: space-between;
+        gap: 4rem;
+
+        li {
+          flex: 0 0 calc(33.33% - 1rem);
+
+          p {
+            font-size: 1.8rem;
+          }
+        }
+      }
+    }
+
+    .button {
+      font-size: 1.2rem;
+      padding: 1.2rem 2.5rem;
     }
   }
 }

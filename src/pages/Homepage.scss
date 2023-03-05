@@ -1,39 +1,57 @@
 .Homepage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-
-  h1 {
-    font-size: 4rem;
-    font-weight: bold;
-    color: #1DB954;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-
-  p {
-    font-size: 1.5rem;
-    color: #FFFFFF;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-
-  a {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background-color: #1DB954;
-    color: #FFFFFF;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 3rem;
-    transition: background-color 0.2s ease-in-out;
-
-    &:hover {
-      background-color: #1ED760;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  
+    h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #1DB954;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+  
+    p {
+      font-size: 1.2rem;
+      color: #FFFFFF;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+  
+    a {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background-color: #1DB954;
+      color: #FFFFFF;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 3rem;
+      transition: background-color 0.2s ease-in-out;
+  
+      &:hover {
+        background-color: #1ED760;
+      }
+    }
+  
+    @media screen and (min-width: 768px) {
+      h1 {
+        font-size: 4rem;
+        margin-bottom: 2rem;
+      }
+  
+      p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+      }
+  
+      a {
+        padding: 1rem 2rem;
+        font-size: 1.5rem;
+      }
     }
   }
-}
+  
