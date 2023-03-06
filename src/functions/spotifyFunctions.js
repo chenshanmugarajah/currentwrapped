@@ -1,50 +1,24 @@
-// import { Buffer } from "buffer";
+import SpotifyWebApi from "spotify-web-api-js";
 
-// export function getUserData(code) {
-//   const response = {
-//     data: "",
-//     loaded: "",
-//   };
+const spotifyApi = new SpotifyWebApi();
 
-//   const shortTerm = {
-//     method: "GET",
-//     url: "https://api.spotify.com/v1/me/playlists",
-//     headers: {
-//       Authorization: "Bearer " + code,
-//     },
-//   };
+export const authenticate = (accessToken) => {
+  spotifyApi.setAccessToken(accessToken);
+};
 
-//   var formattedURL = new URL(shortTerm.url);
-//   if (shortTerm.params) {
-//     Object.keys(shortTerm.params).forEach((key) =>
-//       formattedURL.searchParams.append(key, shortTerm.params[key])
-//     );
-//   }
+export const getTopArtists = () => {
+  return spotifyApi.getMyTopArtists({ time_range: "short_term", limit: 10 });
+};
 
-//   fetch(formattedURL, {
-//     method: shortTerm.method,
-//     headers: shortTerm.headers,
-//   })
-//     .then((res) => {
-//       if (res.status >= 200 && res.status <= 299) {
-//         return res.json();
-//       } else {
-//         if (res.status === 401) {
-//           throw Error("bad or expired token");
-//         } else if (res.status === 403) {
-//           throw Error("bad oauth request");
-//         } else if (res.status === 429) {
-//           throw Error("rate limit");
-//         }
-//       }
-//     })
-//     .then((body) => {
-//       response.data = body;
-//       response.loaded = true;
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-
-//   return response;
-// }
+export const getTimeSpentOnSpotify = () => {
+  return spotifyApi.getMyRecentlyPlayedTracks({ limit: 50 }).then((tracks) => {
+    const totalDuration = tracks.items.reduce(
+      (acc, cur) => acc + cur.track.duration_ms,
+      0
+    );
+    const hours = Math.floor((totalDuration / 1000 / 60 / 60) % 24);
+    const minutes = Math.floor((totalDuration / 1000 / 60) % 60);
+    const seconds = Math.floor((totalDuration / 1000) % 60);
+    return `${hours} hours ${minutes} minutes ${seconds} seconds`;
+  });
+};
