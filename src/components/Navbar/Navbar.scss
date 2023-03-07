@@ -1,0 +1,53 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  align-items: center;
+
+  .left {
+    h3 {
+        font-size: 1.2rem;
+    }
+  }
+ 
+  .right {
+    #links {
+        flex-direction: column;
+      display: none;
+
+      .link {
+        all: unset;
+      }
+    }
+
+    button {
+      all: unset;
+      color: black;
+      padding: 5px;
+      background-color: white;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    align-items: center;
+    
+    .left {
+        h3 {
+            font-size: 1.5rem;
+        }
+    }
+
+    .right {
+
+        #menuToggle {
+            display: none;
+        }
+
+        #links {
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+        }
+    }
+  }
+}

@@ -32,9 +32,9 @@ function HomePage(props) {
 
   return (
     <div className="Homepage">
-      <h1>Welcome to CurrentWrapped</h1>
+      <h1 data-testid="homepage-header">Welcome to CurrentWrapped</h1>
       <p>To use this app, you must log in with Spotify</p>
-      <a href={url}>
+      <a data-testid="login-button" href={url}>
         Log in
       </a>
     </div>

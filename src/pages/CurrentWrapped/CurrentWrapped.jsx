@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import "./CurrentWrapped.scss";
-import { authenticate, getTopArtists, getTimeSpentOnSpotify } from "../../functions/spotifyFunctions.js";
+import {
+  authenticate,
+  getTopArtists,
+  getTimeSpentOnSpotify,
+} from "../../functions/spotifyFunctions.js";
+import { Link } from "react-router-dom";
 
 function CurrentWrapped() {
   const [topArtists, setTopArtists] = useState([]);
@@ -35,18 +40,27 @@ function CurrentWrapped() {
     <div className="ParentWrapped">
       <Navbar />
       <div className="CurrentWrapped">
-        <h1 data-testid="currentwrapped-header" >Your Top Artists</h1>
-        <ul>
-          {topArtists.map((artist, index) => (
-            <li key={index}>
-              {/* <img src={artist.images[0].url} alt={artist.name} /> */}
-              <p>{artist.name}</p>
-            </li>
-          ))}
-        </ul>
+        {topArtists.length > 1 ? (
+          <>
+            <h1 data-testid="currentwrapped-header">Your Top Artists</h1>
+            <ul>
+              {topArtists.map((artist, index) => (
+                <li key={index}>
+                  {/* <img src={artist.images[0].url} alt={artist.name} /> */}
+                  <p>{artist.name}</p>
+                </li>
+              ))}
+            </ul>
 
-        <h1>Your Time Spent on Spotify</h1>
-        <p>{timeSpent}</p>
+            <h1>Your Time Spent on Spotify</h1>
+            <p>{timeSpent}</p>
+          </>
+        ) : 
+        <h3>
+          Please log in again
+          <Link to="/">Log in</Link>
+        </h3>
+      }
       </div>
     </div>
   );

@@ -22,6 +22,7 @@ $primary-color: #1db954;
       flex-wrap: wrap;
       justify-content: center;
       gap: 2rem;
+      margin-bottom: 20px;
 
       li {
         display: flex;
@@ -74,16 +75,14 @@ $primary-color: #1db954;
     .CurrentWrapped {
       max-width: 600px;
       margin: 0 auto;
-
+      
       h1 {
         font-size: 3rem;
         margin-bottom: 2rem;
       }
 
       ul {
-        justify-content: space-between;
         gap: 3rem;
-
         li {
           flex: 0 0 calc(50% - 1rem);
 
