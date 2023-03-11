@@ -5,8 +5,6 @@ function HomePage() {
 
   const scope = "user-top-read user-read-recently-played";
   const url = `https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_type=token&scope=${scope}&show_dialog=true`
-  
-  console.log(process.env);
 
   return (
     <div className="Homepage">

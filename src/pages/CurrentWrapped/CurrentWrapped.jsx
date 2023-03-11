@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import "./CurrentWrapped.scss";
@@ -8,7 +8,6 @@ import {
   getTimeSpentOnSpotify,
   getTopTracks,
   getRecommendations,
-  // getAudioAnalysis,
 } from "../../functions/spotifyFunctions.js";
 import { Link } from "react-router-dom";
 
@@ -25,38 +24,16 @@ function CurrentWrapped() {
       authenticate(accessToken);
     }
 
-    getTopArtists()
-      .then((response) => {
-        setTopArtists(response.items);
+    Promise.all([getTopArtists(), getTopTracks(), getTimeSpentOnSpotify()])
+      .then(([topArtistsResponse, topTracksResponse, timeSpent]) => {
+        setTopArtists(topArtistsResponse.items);
+        setTopTracks(topTracksResponse.items);
+        setTimeSpent(timeSpent);
       })
       .catch((error) => {
         console.log("error: ", error);
       });
-
-    getTopTracks()
-      .then((response) => {
-        setTopTracks(response.items);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    getTimeSpentOnSpotify()
-      .then((timeSpent) => {
-        setTimeSpent(timeSpent);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   }, []);
-
-  // useEffect(() => {
-  //   if (topTracks && topTracks.length > 0) {
-  //     getAudioAnalysis(topTracks[0].id.toString())
-  //       .then((data) => console.log(data))
-  //       .catch((error) => console.log(error));
-  //   }
-  // }, [topTracks]);
 
   const generateRecommend = async () => {
     if (topTracks && topTracks.length > 0) {
@@ -68,9 +45,12 @@ function CurrentWrapped() {
     }
   };
 
+  const memoizedNavbar = useMemo(() => <Navbar />, []);
+  const memoizedFooter = useMemo(() => <Footer />, []);
+
   return (
     <div className="parentWrapped">
-      <Navbar />
+      {memoizedNavbar}
       {topArtists && topArtists.length > 1 ? (
         <div className="currentWrapped">
           <div className="topArtists">
@@ -137,7 +117,7 @@ function CurrentWrapped() {
           </Link>
         </div>
       )}
-      <Footer />
+      {memoizedFooter}
     </div>
   );
 }

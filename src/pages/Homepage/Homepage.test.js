@@ -1,39 +1,34 @@
 import React from "react";
-import { render, waitFor } from "@testing-library/react";
-import { toBeInTheDocument } from "@testing-library/jest-dom";
+import { render, screen, fireEvent } from "@testing-library/react";
 import HomePage from "./HomePage";
-
-jest.mock("spotify-web-api-js", () => {
-  return jest.fn().mockImplementation(() => {
-    return {
-      setAccessToken: jest.fn(),
-    };
-  });
-});
+import "@testing-library/jest-dom";
 
 describe("HomePage", () => {
-  it("should render a header and a login button", () => {
-    const { getByTestId } = render(<HomePage />);
-    expect(getByTestId("homepage-header")).toBeInTheDocument();
-    expect(getByTestId("login-button")).toBeInTheDocument();
+  test("scope parameter is set correctly in the URL", () => {
+    render(<HomePage />);
+    const loginButtonElement = screen.getByTestId("login-button");
+
+    expect(loginButtonElement.href).toContain(
+      "scope=user-top-read%20user-read-recently-played"
+    );
   });
 
-//   it("should redirect to /currentwrapped after logging in", async () => {
-//     window.history.pushState({}, "", "/");
-//     const { getByTestId } = render(<HomePage />);
-//     const loginButton = getByTestId("login-button");
-//     expect(loginButton).toHaveAttribute("href", expect.stringContaining("spotify.com"));
+  test("renders without crashing", () => {
+    render(<HomePage />);
+  });
+  
+  test("no error elements are present", () => {
+    render(<HomePage />);
+    const errorElements = screen.queryAllByRole("alert");
 
-//     // const mockedGetHashParams = jest.spyOn(HomePage.prototype, "getHashParams");
-//     // mockedGetHashParams.mockImplementation(() => {
-//     //   return { access_token: "test-access-token" };
-//     // });
+    expect(errorElements).toHaveLength(0);
+  });
 
-//     loginButton.click();
-
-//     await waitFor(() => {
-//     //   expect(mockedGetHashParams).toHaveBeenCalled();
-//       expect(window.location.href).toContain("/currentwrapped");
-//     });
-//   });
+  test("displays login button with expected URL", () => {
+    render(<HomePage />);
+    const loginButton = screen.getByTestId("login-button");
+    const expectedUrl = `https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_type=token&scope=user-top-read user-read-recently-played&show_dialog=true`;
+    expect(loginButton).toHaveAttribute("href", expectedUrl);
+  });
+  
 });
