@@ -1,12 +1,13 @@
 import React from "react";
 import "./Homepage.scss";
 
-const client_id = "757c22352a1648c69c3ddd9212edb141";
-const redirect_uri = "http://localhost:3000/currentwrapped";
-const scope = "user-top-read user-read-recently-played";
-const url = `https://accounts.spotify.com/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=token&scope=${scope}&show_dialog=true`
-
 function HomePage() {
+
+  const scope = "user-top-read user-read-recently-played";
+  const url = `https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_type=token&scope=${scope}&show_dialog=true`
+  
+  console.log(process.env);
+
   return (
     <div className="Homepage">
       <h1 data-testid="homepage-header">Welcome to CurrentWrapped</h1>
