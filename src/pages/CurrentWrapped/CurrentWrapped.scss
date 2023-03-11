@@ -1,7 +1,28 @@
-$primary-color: #1db954;
-
 .parentWrapped {
   color: white;
+
+  .failed {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 300px 0;
+
+    .link {
+      all: unset;
+      color: black;
+      background-color: white;
+      cursor: pointer;
+      padding: 20px 50px;
+      width: max-content;
+      align-self: center;
+      border-radius: 5px;
+    }
+
+    .link:hover {
+      background-color: gray;
+    }
+
+  }
 
   .currentWrapped {
     text-align: center;
@@ -80,6 +101,48 @@ $primary-color: #1db954;
       p {
         font-size: 1.2rem;
       }
+    }
+
+    .recommendations {
+      padding: 20px;
+      background-color: yellow;
+      
+      h1 {
+        text-align: center;
+        font-size: 1.5rem;
+        color: black;
+      }
+      
+      button {
+        all: unset;
+        background-color: black;
+        padding: 15px 25px;
+        border-radius: 13px;
+      }
+      
+      button:hover {
+        background-color: lighten($color: rgb(28, 28, 28), $amount: 5%);
+      }
+      
+      ul {
+        list-style-type: none;
+        
+        li {
+          text-align: left;
+          margin: 10px;
+
+          a {
+            all: unset;
+            color: black;
+            cursor: pointer;
+          }
+
+          a:hover {
+            color: red;
+          }
+        }
+      }
+      
     }
   }
 
