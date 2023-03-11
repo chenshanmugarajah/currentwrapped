@@ -71,7 +71,7 @@ function CurrentWrapped() {
   return (
     <div className="parentWrapped">
       <Navbar />
-      {topArtists.length > 1 ? (
+      {topArtists && topArtists.length > 1 ? (
         <div className="currentWrapped">
           <div className="topArtists">
             <h1 data-testid="currentwrapped-header">Your Top Artists</h1>
