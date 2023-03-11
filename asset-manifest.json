@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/currentwrapped/static/css/main.320d12e5.css",
+    "main.js": "/currentwrapped/static/js/main.d97758a4.js",
+    "index.html": "/currentwrapped/index.html",
+    "main.320d12e5.css.map": "/currentwrapped/static/css/main.320d12e5.css.map",
+    "main.d97758a4.js.map": "/currentwrapped/static/js/main.d97758a4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.320d12e5.css",
+    "static/js/main.d97758a4.js"
+  ]
+}
