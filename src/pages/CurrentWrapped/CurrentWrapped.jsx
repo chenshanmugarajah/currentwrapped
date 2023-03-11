@@ -8,6 +8,7 @@ import {
   getTimeSpentOnSpotify,
   getTopTracks,
   getRecommendations,
+  // getAudioAnalysis,
 } from "../../functions/spotifyFunctions.js";
 import { Link } from "react-router-dom";
 
@@ -21,7 +22,7 @@ function CurrentWrapped() {
     const hash = window.location.hash;
     if (hash) {
       const accessToken = hash.slice(1).split("&")[0].split("=")[1];
-      authenticate(accessToken)
+      authenticate(accessToken);
     }
 
     getTopArtists()
@@ -48,6 +49,14 @@ function CurrentWrapped() {
         console.log(error);
       });
   }, []);
+
+  // useEffect(() => {
+  //   if (topTracks && topTracks.length > 0) {
+  //     getAudioAnalysis(topTracks[0].id.toString())
+  //       .then((data) => console.log(data))
+  //       .catch((error) => console.log(error));
+  //   }
+  // }, [topTracks]);
 
   const generateRecommend = async () => {
     if (topTracks && topTracks.length > 0) {
@@ -123,7 +132,9 @@ function CurrentWrapped() {
       ) : (
         <div className="failed">
           <h3>Please log in again</h3>
-          <Link className="link" to="/">Log in</Link>
+          <Link className="link" to="/">
+            Log in
+          </Link>
         </div>
       )}
       <Footer />

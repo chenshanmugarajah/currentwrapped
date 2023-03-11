@@ -1,13 +1,14 @@
 import SpotifyWebApi from "spotify-web-api-js";
 
 const spotifyApi = new SpotifyWebApi();
+const term = "medium_term";
 
 export const authenticate = (accessToken) => {
   spotifyApi.setAccessToken(accessToken);
 };
 
 export const getTopArtists = () => {
-  return spotifyApi.getMyTopArtists({ time_range: "medium_term", limit: 5 });
+  return spotifyApi.getMyTopArtists({ time_range: term, limit: 5 });
 };
 
 export const getTimeSpentOnSpotify = () => {
@@ -31,7 +32,7 @@ export const getTimeSpentOnSpotify = () => {
 };
 
 export const getTopTracks = () => {
-  return spotifyApi.getMyTopTracks({ time_range: "medium_term", limit: 5 });
+  return spotifyApi.getMyTopTracks({ time_range: term, limit: 5 });
 };
 
 export const getRecommendations = (artists, tracks, limit) => {
@@ -44,3 +45,7 @@ export const getRecommendations = (artists, tracks, limit) => {
     .then((data) => { return data.tracks; })
     .catch((error) => console.log(error));
 };
+
+export const getAudioAnalysis = (track) => {
+  return spotifyApi.getAudioFeaturesForTrack({ id: track })
+}

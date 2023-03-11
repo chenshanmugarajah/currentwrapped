@@ -21,7 +21,6 @@
     .link:hover {
       background-color: gray;
     }
-
   }
 
   .currentWrapped {
@@ -29,6 +28,21 @@
 
     .topArtists {
       background-color: rgb(81, 0, 210);
+      opacity: 0.8;
+      background-image: radial-gradient(
+          circle at center center,
+          #444cf7,
+          #e5e5f7
+        ),
+        repeating-radial-gradient(
+          circle at center center,
+          #444cf7,
+          #444cf7,
+          10px,
+          transparent 20px,
+          transparent 10px
+        );
+      background-blend-mode: multiply;
 
       h1 {
         font-size: 1.5rem;
@@ -58,24 +72,31 @@
 
     .topTracks {
       background-color: rgb(56, 220, 100);
-      
+      opacity: 0.8;
+      background-image: linear-gradient(
+        0deg,
+        rgb(56, 220, 100) 50%,
+        rgb(68, 227, 110) 50%
+      );
+      background-size: 10px 20px;
+
       h1 {
         font-size: 1.5rem;
         margin: 0;
         padding: 20px 0 20px 0;
         color: rgb(195, 31, 224);
       }
-      
+
       img {
         border: 5px rgb(222, 35, 255) solid;
         height: 150px;
       }
-      
+
       ul {
         padding: 10px 0;
         margin: 0;
         list-style-type: none;
-        
+
         li {
           p {
             color: rgb(20, 25, 9);
@@ -88,10 +109,15 @@
 
     .timeSpent {
       margin: 0;
-      background-color: orange;
+      background-color: rgb(255, 166, 0);
       padding: 20px 0;
       color: rgb(24, 1, 130);
-      
+      opacity: 0.8;
+      background-image: radial-gradient(#444cf7 0.75px, transparent 0.75px),
+        radial-gradient(#444cf7 0.75px, rgb(255, 166, 0) 0.75px);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+
       h1 {
         margin-top: 0;
         padding: 10px;
@@ -106,27 +132,46 @@
     .recommendations {
       padding: 20px;
       background-color: yellow;
-      
+      opacity: 0.8;
+      background-image: repeating-linear-gradient(
+          45deg,
+          yellow 25%,
+          transparent 25%,
+          transparent 75%,
+          yellow 75%,
+          yellow
+        ),
+        repeating-linear-gradient(
+          45deg,
+          yellow 25%,
+          rgb(235, 235, 0) 25%,
+          rgb(227, 227, 0) 75%,
+          yellow 75%,
+          yellow
+        );
+      background-position: 0 0, 15px 15px;
+      background-size: 30px 30px;
+
       h1 {
         text-align: center;
         font-size: 1.5rem;
         color: black;
       }
-      
+
       button {
         all: unset;
         background-color: black;
         padding: 15px 25px;
         border-radius: 13px;
       }
-      
+
       button:hover {
         background-color: lighten($color: rgb(28, 28, 28), $amount: 5%);
       }
-      
+
       ul {
         list-style-type: none;
-        
+
         li {
           margin: 10px;
 
@@ -141,7 +186,6 @@
           }
         }
       }
-      
     }
   }
 
